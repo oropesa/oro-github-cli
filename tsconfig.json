@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    /* Basic Options */
+    "lib": ["ES2023"],
+    "target": "ES2023",
+    "module": "nodenext",
+
+    /* Workspace Settings */
+    "rootDir": "src",
+    "baseUrl": "./src",
+    "outDir": "./bin",
+    "paths": {
+      "@/*": ["./*"]
+    },
+
+    /* Strict Type-Checking Options */
+    "erasableSyntaxOnly": true,
+    "strict": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  }
+}

@@ -1,0 +1,7 @@
+.idea/
+coverage/
+bin/
+node_modules/
+
+ogh-config.json
+tmp.js
