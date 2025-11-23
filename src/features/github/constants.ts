@@ -8,18 +8,19 @@ export const GITHUB_API_URL = 'https://api.github.com' as const;
 
 export const GITHUB_BRANCH_ORDER = ['develop', 'dev', 'pre', 'release', 'main', 'master'];
 
-export const GITHUB_REPO_TYPES = ['feat', 'improve', 'chore', 'refactor', 'bug', 'hotfix', 'test', 'docs'] as const;
+export const GITHUB_REPO_TYPES = ['feat', 'improve', 'chore', 'bug', 'hotfix', 'test', 'docs'] as const;
 
-// NOTE: It's recommended that all github-repos have this labels, but it's not a requirement
-export const GITHUB_REPO_LABELS = ['feat', 'improve', 'chore', 'refactor', 'bug', 'hotfix', 'test', 'docs'];
+export type GithubRepoType = (typeof GITHUB_REPO_TYPES)[number];
 
-export const GITHUB_LABEL_BY_TYPE: Record<string, string> = {
-  feat: 'feat',
-  improve: 'improve',
-  chore: 'chore',
-  refactor: 'refactor',
-  bug: 'bug',
-  hotfix: 'hotfix',
-  test: 'test',
-  docs: 'docs',
+export const GITHUB_LABEL_BY_TYPE: Record<GithubRepoType, string[]> = {
+  feat: ['feat', 'feature', 'backlog'],
+  improve: ['improve', 'backlog'],
+  chore: ['chore', 'refactor', 'release'],
+  bug: ['bug', 'bugfix'],
+  hotfix: ['hotfix'],
+  test: ['test', 'testing'],
+  docs: ['docs', 'documentation'],
 };
+
+// NOTE: It's not required that github-repos have this labels
+export const GITHUB_REPO_LABELS = Object.values(GITHUB_LABEL_BY_TYPE).flat();

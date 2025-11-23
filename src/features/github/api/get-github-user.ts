@@ -5,7 +5,11 @@ import { API_GITHUB_ERROR_UNKNOWN, GITHUB_API_URL } from '../constants.js';
 import { ApiGithubError, GithubUser } from '../types.js';
 import { ApiGithubUser } from './get-github-user.types.js';
 
-export async function apiGetGithubUser(token: string) {
+export interface ApiGetGithubUserProps {
+  token: string;
+}
+
+export async function apiGetGithubUser({ token }: ApiGetGithubUserProps) {
   const userResponse = await axios
     .get<ApiGithubUser>(`${GITHUB_API_URL}/user`, {
       headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' },

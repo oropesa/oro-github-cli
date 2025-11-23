@@ -15,7 +15,7 @@ export async function fnValidation<T>(data: T): Promise<boolean> {
 
   // get repos
 
-  const reposResponse = await apiGetGithubRepos(token, true);
+  const reposResponse = await apiGetGithubRepos({ token, verbose: true });
   if (!reposResponse.status) {
     processWrites([{ s: '\n' }, { c: 'redflat', s: reposResponse.error.msg }, { s: '\n' }]);
     return false;

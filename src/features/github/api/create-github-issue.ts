@@ -7,15 +7,17 @@ import { ApiGithubIssue } from './create-github-issue.types.js';
 
 export type ApiCreateGithubIssueResponse = ApiGithubIssue;
 
-export async function apiCreateGithubIssue(
-  token: string,
-  repo: { fullname: string },
+export interface ApiCreateGithubIssueProps {
+  token: string;
+  repo: { fullname: string };
   issue: {
     title: string;
     assignee: string;
     labels: string[];
-  },
-) {
+  };
+}
+
+export async function apiCreateGithubIssue({ token, repo, issue }: ApiCreateGithubIssueProps) {
   return await axios
     .post<ApiCreateGithubIssueResponse>(`${GITHUB_API_URL}/repos/${repo.fullname}/issues`, issue, {
       headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' },

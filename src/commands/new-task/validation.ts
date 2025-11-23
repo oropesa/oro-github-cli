@@ -1,6 +1,7 @@
-import { capitalize, processWrites, sanitizeFilename, slugify } from 'oro-functions';
+import { processWrites } from 'oro-functions';
 
 import { getConfigGithubReposMap } from '@/features/config/config-repos.js';
+import { sanitizeBranchName, sanitizeIssueTitle } from '@/features/github/utils.js';
 
 import { GithubNewTaskProps } from './types.js';
 
@@ -24,7 +25,6 @@ export async function fnValidation<T>(data: T): Promise<boolean> {
   const githubRepos = await getConfigGithubReposMap();
 
   const repo = githubRepos.get(repoKey);
-
   if (!repo) {
     processWrites([{ c: 'redflat', s: `\nError: repo '${repoKey}' not exist\n` }]);
     return false;
@@ -32,14 +32,8 @@ export async function fnValidation<T>(data: T): Promise<boolean> {
 
   // init
 
-  const sanitizeTaskId = slugify(sanitizeFilename(taskId.replace(/[/\\]/g, '-')).toLowerCase())
-    .replace(/^-+/, '')
-    .replace(/-+$/, '')
-    .toUpperCase();
-
-  const issueTitle = `${sanitizeTaskId ? `[${sanitizeTaskId}] ` : ''}${capitalize(type)}. ${title}`;
-  const branch = `${type}/${sanitizeTaskId ? `${sanitizeTaskId}--` : ''}{issueID}-${slugify(sanitizeFilename(title.replace(/[/\\]/g, '-')).toLowerCase())}`;
-  const mergeRequest = `Draft: Resolve "${issueTitle}"`;
+  const issueTitle = sanitizeIssueTitle({ type, title, taskId });
+  const branchName = sanitizeBranchName({ type, title, taskId });
 
   //
 
@@ -47,14 +41,12 @@ export async function fnValidation<T>(data: T): Promise<boolean> {
     { s: `\nYou are going to create:\n` },
     { s: `· in repo: ` },
     { c: 'red', s: `${repo.fullname}\n` },
+    { s: `· from origin: ` },
+    { c: 'purpleflat', s: `${origin}\n` },
     { s: `· a new issue: ` },
     { c: 'green', s: `${issueTitle}\n` },
     { s: `· a new branch: ` },
-    { c: 'yellowflat', s: `${branch}\n` },
-    { s: `· from origin: ` },
-    { c: 'purpleflat', s: `${origin}\n` },
-    { s: `· a merge request: ` },
-    { c: 'blue', s: `${mergeRequest}\n` },
+    { c: 'yellowflat', s: `${branchName}\n` },
   ]);
 
   return true;

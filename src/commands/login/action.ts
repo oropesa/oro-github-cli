@@ -13,7 +13,7 @@ export async function fnAction<T>(data: T): Promise<void> {
 
   // get user
 
-  const userResponse = await apiGetGithubUser(token);
+  const userResponse = await apiGetGithubUser({ token });
   if (!userResponse.status) {
     processWrites([{ s: '\n' }, { c: 'redflat', s: userResponse.error.msg }, { s: '\n' }]);
     return;

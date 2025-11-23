@@ -14,7 +14,7 @@ export async function requirementConfigUser(): Promise<boolean> {
 
   // check token
 
-  const userResponse = await apiGetGithubUser(token);
+  const userResponse = await apiGetGithubUser({ token });
   if (!userResponse.status) {
     processWrites([
       { s: '\n' },

@@ -12,7 +12,7 @@ export async function fnAction<T>(_data: T): Promise<void> {
 
   // get repos
 
-  const reposResponse = await apiGetGithubRepos(token);
+  const reposResponse = await apiGetGithubRepos({ token });
 
   if (!reposResponse.status) {
     Ofn.processWrite({ c: 'redflat', s: `\n${reposResponse.error.msg}\n` });
