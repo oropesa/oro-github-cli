@@ -1,5 +1,10 @@
 import { getConfigGithubReposMap } from '@/features/config/config-repos.js';
-import { GITHUB_LABEL_BY_TYPE, GITHUB_REPO_LABELS, GITHUB_REPO_TYPES } from '@/features/github/constants.js';
+import {
+  GITHUB_LABEL_BY_TYPE,
+  GITHUB_REPO_LABELS,
+  GITHUB_REPO_TYPES,
+  GithubRepoType,
+} from '@/features/github/constants.js';
 import { sortArrayByArray } from '@/features/global/utils.js';
 import { InteractiveOption } from '@/features/yargs/types.js';
 
@@ -60,8 +65,8 @@ export async function fnOptions(): Promise<InteractiveOption> {
         const allowedDefault = defaults?.label ? repoLabels.find((label) => label === defaults.label) : undefined;
         if (allowedDefault) return allowedDefault;
 
-        const defaultLabelByType = GITHUB_LABEL_BY_TYPE[argv?.type];
-        return defaultLabelByType ? repoLabels.find((label) => label === defaultLabelByType) : undefined;
+        const defaultLabelsByType = GITHUB_LABEL_BY_TYPE[argv?.type as GithubRepoType];
+        return defaultLabelsByType ? repoLabels.find((label) => defaultLabelsByType.includes(label)) : undefined;
       },
     },
     title: {

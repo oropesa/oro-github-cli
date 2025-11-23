@@ -32,3 +32,9 @@ export interface GithubRepoLabel {
   description: string;
   color: string;
 }
+
+export interface GithubBranch {
+  ref: string;
+  name: string;
+  sha: string;
+}

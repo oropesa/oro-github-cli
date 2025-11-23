@@ -9,7 +9,12 @@ export type ApiGetGithubReposResponse = ApiGithubRepo[];
 
 export const PER_PAGE = 100;
 
-export async function apiGetGithubRepos(token: string, verbose = false) {
+export interface ApiGetGithubReposProps {
+  token: string;
+  verbose?: boolean;
+}
+
+export async function apiGetGithubRepos({ token, verbose }: ApiGetGithubReposProps) {
   // get repos
 
   if (verbose) {

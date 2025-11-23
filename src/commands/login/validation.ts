@@ -20,7 +20,7 @@ export async function fnValidation<T>(data: T): Promise<boolean> {
 
   // get user
 
-  const userResponse = await apiGetGithubUser(token);
+  const userResponse = await apiGetGithubUser({ token });
   if (!userResponse.status) {
     processWrites([{ s: '\n' }, { c: 'redflat', s: userResponse.error.msg }, { s: '\n\n' }]);
     return false;
