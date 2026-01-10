@@ -1,3 +1,8 @@
+## 0.3.0 / 2026-01-08
+
+- Set `keytar` _lib_ as optional to work in Termux (Android) environment.
+- Fix advise of `minimum required scopes` as 'Contents' (read & write) and 'Issues' (read & write).
+
 ## 0.2.0 / 2025-11-23
 
 - Fix `new-task`, now it creates **new issue** and **branch** correctly.

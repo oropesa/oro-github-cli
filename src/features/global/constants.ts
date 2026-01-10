@@ -16,3 +16,6 @@ export const OGH_VERSION = `v${version}`;
 
 export const OGH_CONFIG_FILE = `ogh-config.json`;
 export const OGH_CONFIG_FILEPATH = `${OGH_FOLDER}/${OGH_CONFIG_FILE}`;
+
+export const OGH_TOKEN_FILE = `ogh-config.token`;
+export const OGH_TOKEN_FILEPATH = `${OGH_FOLDER}/${OGH_TOKEN_FILE}`;

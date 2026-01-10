@@ -2,6 +2,7 @@ import { processWrites } from 'oro-functions';
 
 import { apiGetGithubUser } from '@/features/github/api/get-github-user.js';
 import { OGH_CONFIG_FILE } from '@/features/global/constants.js';
+import { getKeytar } from '@/features/keytar/get-keytar.js';
 
 import { GithubLoginProps } from './types.js';
 
@@ -28,12 +29,14 @@ export async function fnValidation<T>(data: T): Promise<boolean> {
 
   //
 
+  const keytar = await getKeytar();
+
   const { userid, username, name, email } = userResponse;
 
   processWrites([
     { s: `\n· ` },
     { s: `Github token`, a: ['italic', 'bold'] },
-    { s: ` will be stored in system's keychain.` },
+    { s: ` will be stored in ${keytar.hasKeychain ? "system's keychain" : 'token file'}.` },
     { s: `\n· ` },
     { s: `Github user`, a: ['italic', 'bold'] },
     { s: ` will be stored in ` },

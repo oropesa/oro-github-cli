@@ -9,6 +9,7 @@ export default defineConfig({
   dts: false,
   minify: true,
   clean: true,
+  external: ['keytar'],
   onSuccess: async () => {
     renameSync('./bin/ogh.js', './bin/ogh');
     processWrites([
