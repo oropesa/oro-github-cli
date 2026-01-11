@@ -1,10 +1,10 @@
 import { SResponseKOSimple, SResponseOKBasic, processWrites } from 'oro-functions';
 
 import { GithubUser } from '@/features/github/types.js';
+import { getUserToken, saveUserToken } from '@/features/keytar/user-token.js';
 
 import { getConfig, saveConfig } from './config.js';
 import { DEFAULT_CONFIG_USER } from './constants.js';
-import { getUserToken, saveUserToken } from './token.js';
 import type { Config } from './types.js';
 
 //

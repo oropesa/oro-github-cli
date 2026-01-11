@@ -14,7 +14,7 @@ export function sanitizeTaskId(taskId?: string) {
 export function sanitizeIssueTitle({ type, title, taskId }: { type: string; title: string; taskId?: string }) {
   const sanitizedTaskId = sanitizeTaskId(taskId);
 
-  return `${sanitizedTaskId ? `[${sanitizedTaskId}] ` : ''}${capitalize(type)}. ${title}`;
+  return `${sanitizedTaskId ? `[${sanitizedTaskId}] ` : ''}${capitalize(type)}: ${title}`;
 }
 
 //
@@ -34,5 +34,5 @@ export function sanitizeBranchName(
   const sanitizedTaskId = sanitizeTaskId(taskId);
   const issueID = requireIssue ? `${issueNumber}` : '{issueID}';
 
-  return `${type}/${issueID}${sanitizedTaskId ? `--${sanitizedTaskId}-` : ''}-${slugify(sanitizeFilename(title.replace(/[/\\]/g, '-')).toLowerCase())}`;
+  return `${type}/${issueID}${sanitizedTaskId ? `--${sanitizedTaskId}--` : '-'}${slugify(sanitizeFilename(title.replace(/[/\\]/g, '-')).toLowerCase())}`;
 }

@@ -12,9 +12,7 @@ export async function fnPreAction<O>(options: O): Promise<void> {
       { s: '\n' },
       { c: 'purple', s: 'Tip: ' },
       { s: 'You can generate a fine-grained Personal Access Token here https://github.com/settings/tokens \n' },
-      {
-        s: "· The minimum required scopes are 'Contents' (read), 'Issues' (read & write), 'Pull requests' (read & write).\n",
-      },
+      { s: "· The minimum required scopes are 'Contents' (read & write), 'Issues' (read & write).\n" },
       { s: '\n' },
     ]);
   }

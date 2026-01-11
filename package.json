@@ -1,6 +1,6 @@
 {
   "name": "oro-github-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Github CLI to automatize agile-management actions",
   "type": "module",
   "bin": {
@@ -39,10 +39,12 @@
   "dependencies": {
     "axios": "^1.13.2",
     "fs-extra": "^11.3.2",
-    "keytar": "^7.9.0",
     "oro-functions": "^2.4.5",
     "yargs": "^18.0.0",
     "yargs-interactive": "^3.0.1"
+  },
+  "optionalDependencies": {
+    "keytar": "^7.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
